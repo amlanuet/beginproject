@@ -31,6 +31,13 @@ class BeginProject(uweb3.DebuggingPageMaker):
      list = None
    return self.parser.Parse('img.html', search=search, pathlist=pathlist)
 
+  def History(self, action=None):
+   """History Page"""
+   history = []
+   for message in Message.List(self.connection):
+     history.append(message)
+   return self.parser.Parse('history.html', history=history,)
+
   def Index(self, action=None):
     """Returns the homepage."""
     test = self.get.getfirst('user')
